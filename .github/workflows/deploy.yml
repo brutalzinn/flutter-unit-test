@@ -19,7 +19,7 @@ jobs:
           java-version: '11'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.17.5'
+          flutter-version: '2.13.0‑0.3.pre'
 
       - name: Atualizo pacotes
         run: flutter pub get
