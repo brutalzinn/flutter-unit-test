@@ -23,7 +23,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.8.0'
+          flutter-version: '2.13.0'
 
       - name: Atualizo pacotes
         run: flutter pub get
