@@ -1,8 +1,4 @@
-int TamanhoMatriz(int l, int c) {
-  return l * c;
-}
-
-int DiferencaDateTime(List<DateTime> listaDateTime){
+int diferencaDateTime(List<DateTime> listaDateTime){
     
     int resultado = 0;
   
