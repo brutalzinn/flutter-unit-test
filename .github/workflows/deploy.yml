@@ -24,6 +24,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.13.0'
+          channel: 'master'
 
       - name: Atualizo pacotes
         run: flutter pub get
