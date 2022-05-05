@@ -3,15 +3,19 @@ name: Flutter Build APK Test
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: 
+      - master
+
+    tags: 
+      - '*'
+
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v2
 
