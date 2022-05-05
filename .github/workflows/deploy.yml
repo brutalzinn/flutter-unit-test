@@ -12,11 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
+
+      - name: "Configuro o java"
       - uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
           java-version: '11'
+
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.13.0‑0.3.pre'
@@ -30,7 +33,7 @@ jobs:
       - name: Crio o apk
         run: flutter build apk --split-per-abi --release
 
-      - name: crio o bundle APPBUNDLE
+      - name: Crio o bundle APPBUNDLE
         run: flutter build appbundle --release
 
       - name: Crio uma versão nova no repositório
