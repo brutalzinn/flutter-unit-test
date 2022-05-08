@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tests/functions/datetime.dart';
 import 'package:flutter_tests/functions/matriz.dart';
+import 'package:flutter_tests/main.dart';
 
 
 void main() {
@@ -13,9 +15,24 @@ void main() {
     test('Diferença de horas entre datas ( precisa passar )', () {
     expect(diferencaDateTime([DateTime.parse("2022-05-01 06:00:00"), DateTime.parse("2022-05-01 08:30:00")]), 2);
   });
-  // test('Diferença de horas entre datas ( precisa quebrar )', () {
-  //   expect(diferencaDateTime([DateTime.parse("2022-05-01 06:00:00"), DateTime.parse("2022-05-01 08:30:00"), DateTime.parse("2022-05-01 09:30:00")]), 2);
-  // });
+
+  testWidgets("Testando botão de increment", (WidgetTester tester) async {
+
+    await tester.pumpWidget(const MyApp());
+    expect(find.text('0'), findsOneWidget);
+    expect(find.text('1'), findsNothing);
+
+    // Tap the '+' icon and trigger a frame.
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
+
+    // Verify that our counter has incremented.
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
+
+  });
+
+
   
 
 }
