@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Calculadora de time range',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Calculadora de time range'),
     );
   }
 }
@@ -30,42 +30,51 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+    List<TimeOfDay> listTimes = [];
+    TimeOfDay selectedTime = TimeOfDay.now();
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+_selectTime(BuildContext context) async {
+      final TimeOfDay? timeOfDay = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+         builder: (context, child) {
+          return MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                  alwaysUse24HourFormat: true),
+              child: child!);
+        }
+
+      );
+      if(timeOfDay != null)
+        {
+          setState(() {
+            // selectedTime = timeOfDay;
+            listTimes.add(timeOfDay);
+          });
+        }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      body:  ListView.builder(
+          itemCount: listTimes.length,
+          shrinkWrap: true,
+        itemBuilder: (BuildContext context, int index){
+          return ListTile(
+            title:Text("Teste: ${listTimes[index].hour} ${listTimes[index].minute}")
+            );
+        }
         ),
-      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () => _selectTime(context),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
   }
+
 }
